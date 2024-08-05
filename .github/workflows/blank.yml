@@ -1,0 +1,28 @@
+name: schedule
+
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - run: |
+          export NOW=$(date '+%Y-%m-%d-%H-%M-%S')
+          export DAY=$(date '+%Y-%m-%d')
+          export DAY_1d=$(date -d '1 days ago' '+%Y-%m-%d')
+          export DAY_3d=$(date -d '3 days ago' '+%Y-%m-%d')
+          export DAY_7d=$(date -d '7 days ago' '+%Y-%m-%d')
+          mkdir -p data/github/$DAY
+          curl -G https://api.github.com/search/repositories --data-urlencode "sort=stars" --data-urlencode "q=created:>$DAY_1d" -o data/github/$DAY/repo_1d_stars.$NOW.json
+          curl -G https://api.github.com/search/repositories --data-urlencode "sort=stars" --data-urlencode "q=created:>$DAY_3d" -o data/github/$DAY/repo_3d_stars.$NOW.json
+          curl -G https://api.github.com/search/repositories --data-urlencode "sort=stars" --data-urlencode "q=created:>$DAY_7d" -o data/github/$DAY/repo_7d_stars.$NOW.json
+
+      - uses: stefanzweifel/git-auto-commit-action@v5

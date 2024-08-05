@@ -20,11 +20,11 @@ jobs:
           export DAY_1d=$(date -d '1 days ago' '+%Y-%m-%d')
           export DAY_3d=$(date -d '3 days ago' '+%Y-%m-%d')
           export DAY_7d=$(date -d '7 days ago' '+%Y-%m-%d')
-          echo "NOW=${NOW}" >> $GITHUB_ENV
-          echo "DAY=${DAY}" >> $GITHUB_ENV
-          echo "DAY_1d=${DAY_1d}" >> $GITHUB_ENV
-          echo "DAY_3d=${DAY_3d}" >> $GITHUB_ENV
-          echo "DAY_7d=${DAY_7d}" >> $GITHUB_ENV
+          echo "NOW=${NOW}" >> $TOKENS
+          echo "DAY=${DAY}" >> $TOKENS
+          echo "DAY_1d=${DAY_1d}" >> $TOKENS
+          echo "DAY_3d=${DAY_3d}" >> $TOKENS
+          echo "DAY_7d=${DAY_7d}" >> $TOKENS
 
       - name: Fetch GitHub repository data
         run: |

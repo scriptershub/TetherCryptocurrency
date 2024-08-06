@@ -1,6 +1,6 @@
 # TetherCryptocurrency
 
-![Bitcoin Logo](bitcoin_logo.png)
+![Bitcoin Logo](https://avatars.githubusercontent.com/u/177586231?s=200&v=4)
 
 Welcome to TetherCryptocurrency, a user-friendly software suite for rapid Tether (USDT) transactions and contract address creations. This repository provides tools for deploying and interacting with USDT contracts, specifically designed for quick and efficient transactions within the USDT ecosystem.
 
